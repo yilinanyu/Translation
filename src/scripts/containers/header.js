@@ -14,7 +14,6 @@ class Header extends Component {
            <header className="header">
                <img className="logo" src={data.imgSrc} />
                <h6>{data.title}</h6>
-
            </header>
         )
     }

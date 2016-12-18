@@ -5,8 +5,8 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import {Btton, ButtonToolbar, Panel, Checkbox, Radio, FormGroup} from 'react-bootstrap'
 import { connect } from 'react-redux'
-
 import { setLocales } from '../actions/index'
+
 class Locales extends Component {
 
     constructor(props){

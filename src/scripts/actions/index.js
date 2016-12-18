@@ -5,6 +5,7 @@ export const UPDATE_COUNT = 'UPDATE_COUNT'
 export const SET_LOCALE = 'SET_LOCALE'
 export const SET_ENVIRONMENT = 'SET_ENVIRONMENT'
 export const SET_RESULT = 'SET_RESULT'
+export const SET_MARKETINGPAGES = 'SET_MARKETINGPAGES'
 
 export function updateCounter(operator) {
     return (dispatch, getState) => {
@@ -34,21 +35,35 @@ export function setLocales(checkboxId) {
     })
 }
 
+export function setMarketingpages(checkboxId) {
+    return({
+        type:SET_MARKETINGPAGES,
+        payload: checkboxId
+    })
+}
+
+
 export function checkTranslation() {
     return (dispatch, getState) => {
 
         const appState = getState()
         const evn = appState.environment.radios
         const locales = appState.locales.checkboxes
-
+        const marketingpages = appState.marketingpages.checkboxes
         let selectedEnv = filter(locales, o => { return o.selected == 1 })
+        let selectedPage = filter(marketingpages, m => { return m.selected == 1})
+
         console.log(selectedEnv)
-        console.log(evn)
-        console.log(locales)
+        console.log(selectedPage)
+        // console.log(evn)
+        // console.log(locales)
+        // console.log(marketingpages)
 
         // get the selected values
         let obj = { }
         dispatch(displayResult(selectedEnv))
+        dispatch(displayResult(selectedPage))
+
     }
 }
 

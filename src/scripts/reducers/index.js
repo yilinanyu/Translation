@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     header: headerReducer,
     counter:  counterReducer,
     environment: environmentReducer,
-    marketingpage: marketingpageReducer,
+    marketingpages: marketingpageReducer,
     locales: localesReducer,
     result: resultReducer
 })
