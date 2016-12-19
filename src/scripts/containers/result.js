@@ -6,19 +6,24 @@ import map from 'lodash/map'
 
 class Result extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
     }
 
     render() {
-       return (
+        if (!this.props.results) {
+            return <div>Select a checkbox to get started.</div>;
+        }
+        return (
            <div className="panel panel-default">
                <div className="panel-heading">Result!</div>
                <div className="panel-body">
-                   {map(this.props.results, result => {
-                       console.log(result)
-                       return `country's：${result.label} |  `
+                   <div>Selected:
+                       {map(this.props.results, result => {
+                       return (` ${result.label} |  `
+                       )
                    })}
+                   </div>
                </div>
            </div>
         )
@@ -29,6 +34,7 @@ class Result extends Component {
 //   console.log(this.props.result[i])
 //        "country's: " + result.label
 // }
+// result from reducer/index
 function mapStateToProps(appState){
     return {results: appState.result}
 }

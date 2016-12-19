@@ -41,10 +41,13 @@ class Locales extends Component {
 
 
 function mapStateToProps(appState){
+    //whatever is returned will show up as props inside the locales
     return {locales: appState.locales}
 }
-
+// Anything returned from this function will end up as props on the locales container
 function mapDispatchToProps(dispatch) {
+    // whenever setLocales is called, the result should be passed by dispatch to all of our reducers
     return bindActionCreators({setLocales}, dispatch)
 }
+// Promote locales from a component to a container- it needs to know about this new dispatch method, Make it available as a prop
 export default connect(mapStateToProps, mapDispatchToProps)(Locales)

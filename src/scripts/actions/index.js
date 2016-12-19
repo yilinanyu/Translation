@@ -1,5 +1,6 @@
 import find from 'lodash/find'
 import filter from 'lodash/filter'
+import forEach from 'lodash/each'
 
 export const UPDATE_COUNT = 'UPDATE_COUNT'
 export const SET_LOCALE = 'SET_LOCALE'
@@ -47,22 +48,36 @@ export function checkTranslation() {
     return (dispatch, getState) => {
 
         const appState = getState()
-        const evn = appState.environment.radios
+        const env = appState.environment.radios
         const locales = appState.locales.checkboxes
         const marketingpages = appState.marketingpages.checkboxes
-        let selectedEnv = filter(locales, o => { return o.selected == 1 })
+        let selectedLocale = filter(locales, o => { return o.selected == 1 })
         let selectedPage = filter(marketingpages, m => { return m.selected == 1})
+        let selectedEnv = filter(env, e => { return e.selected == 1})
+        // let selectedItem =
 
-        console.log(selectedEnv)
-        console.log(selectedPage)
+
+        // console.log(selectedLocale)
+        // console.log(selectedPage)
         // console.log(evn)
         // console.log(locales)
         // console.log(marketingpages)
 
         // get the selected values
-        let obj = { }
-        dispatch(displayResult(selectedEnv))
+        // _.forEach(selectedLocale, function(value){
+        //     console.log(value)
+        // })
+        // let obj = {
+        //
+        //     [
+        //         {envtitle: selectedEnv},
+        //         {localestitle: selectedLocale},
+        //         {pagetitle:selectedPage}
+        //     ]
+        // }
+        // dispatch(displayResult(selectedEnv))
         dispatch(displayResult(selectedPage))
+
 
     }
 }
