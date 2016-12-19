@@ -54,7 +54,7 @@ export function checkTranslation() {
         let selectedLocale = filter(locales, o => { return o.selected == 1 })
         let selectedPage = filter(marketingpages, m => { return m.selected == 1})
         let selectedEnv = filter(env, e => { return e.selected == 1})
-        var selectedItem = unionBy(selectedEnv, selectedLocale, selectedPage, "label");
+        var selectedItem = unionBy(selectedEnv, selectedPage, selectedLocale, "label");
         console.log(selectedItem)
         dispatch(displayResult(selectedItem))
     }
