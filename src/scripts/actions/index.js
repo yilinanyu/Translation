@@ -1,6 +1,6 @@
 import find from 'lodash/find'
 import filter from 'lodash/filter'
-import forEach from 'lodash/each'
+import unionBy from 'lodash/unionBy'
 
 export const UPDATE_COUNT = 'UPDATE_COUNT'
 export const SET_LOCALE = 'SET_LOCALE'
@@ -54,31 +54,9 @@ export function checkTranslation() {
         let selectedLocale = filter(locales, o => { return o.selected == 1 })
         let selectedPage = filter(marketingpages, m => { return m.selected == 1})
         let selectedEnv = filter(env, e => { return e.selected == 1})
-        // let selectedItem =
-
-
-        // console.log(selectedLocale)
-        // console.log(selectedPage)
-        // console.log(evn)
-        // console.log(locales)
-        // console.log(marketingpages)
-
-        // get the selected values
-        // _.forEach(selectedLocale, function(value){
-        //     console.log(value)
-        // })
-        // let obj = {
-        //
-        //     [
-        //         {envtitle: selectedEnv},
-        //         {localestitle: selectedLocale},
-        //         {pagetitle:selectedPage}
-        //     ]
-        // }
-        // dispatch(displayResult(selectedEnv))
-        dispatch(displayResult(selectedPage))
-
-
+        var selectedItem = unionBy(selectedEnv, selectedLocale, selectedPage, "label");
+        console.log(selectedItem)
+        dispatch(displayResult(selectedItem))
     }
 }
 
