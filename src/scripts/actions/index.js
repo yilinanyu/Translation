@@ -1,10 +1,11 @@
 import filter from 'lodash/filter'
-
+import axios from 'axios'
 export const UPDATE_COUNT = 'UPDATE_COUNT'
 export const SET_LOCALE = 'SET_LOCALE'
 export const SET_ENVIRONMENT = 'SET_ENVIRONMENT'
 export const SET_RESULT = 'SET_RESULT'
 export const SET_MARKETING_PAGES = 'SET_MARKETING_PAGES'
+export const FETCH_API_RESULT = 'FETCH_API_RESULT'
 
 export function updateCounter(operator) {
     return (dispatch, getState) => {
@@ -42,7 +43,7 @@ export function setMarketingpages(checkboxId) {
 }
 
 
-export function checkTranslation() {
+export function checkTranslation(ajaxcall = 0) {
     return (dispatch, getState) => {
 
         const appState = getState()
@@ -59,7 +60,13 @@ export function checkTranslation() {
         result.selectedOptions[1].selected  = selectedMarketingPages
         result.selectedOptions[2].selected  = selectedLocale
 
-        dispatch(displayResult(result))
+        if (ajaxcall==1) {
+            dispatch(fetchApiResult('url'))
+        }
+
+
+        // dispatch(displayResult(result))
+
     }
 }
 
@@ -67,5 +74,13 @@ export function displayResult(obj) {
     return({
         type: SET_RESULT,
         payload: obj
+    })
+}
+
+export function fetchApiResult(url){
+    let promise = axios.get(url)
+    return({
+        type: FETCH_API_RESULT,
+        payload: promise
     })
 }

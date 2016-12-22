@@ -1,13 +1,7 @@
-/**
- * Created by lyi on 12/5/2016.
- */
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-
 import { checkTranslation } from '../actions/index'
-
-
 
 class CheckButton extends Component {
 
@@ -21,7 +15,7 @@ class CheckButton extends Component {
                 <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={this.props.checkTranslation}>
+                    onClick={this.props.checkTranslation(ajaxcall = 1)}>
                     Check
                 </button>
             </div>

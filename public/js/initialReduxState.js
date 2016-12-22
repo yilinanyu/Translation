@@ -48,4 +48,12 @@ var initialReduxState = {
             { id: 3, title: "Locales", selected: [] },
         ],
     }
+    // result: {
+    //     title: "Result",
+    //     selectedOptions: [
+    //         { id: 1, title: "Environment", selected: [] },
+    //         { id: 2, title: "Marketing Pages", selected: [] },
+    //         { id: 3, title: "Locales", selected: [] },
+    //     ],
+    // }
 }

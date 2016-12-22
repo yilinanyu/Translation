@@ -6,6 +6,7 @@ import environmentReducer from './reducer_environment'
 import marketingPageReducer from './reducer_marketingPage'
 import localesReducer from './reducer_locales'
 import resultReducer from './reducer_result'
+import apiReducer from './reducer_api'
 
 
 const rootReducer = combineReducers({
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     environment: environmentReducer,
     marketingPages: marketingPageReducer,
     locales: localesReducer,
-    result: resultReducer
+    result: resultReducer,
+    api: apiReducer
 })
 
 export default rootReducer
