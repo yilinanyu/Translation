@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import {Button, ButtonToolbar, Panel, Checkbox, Radio, FormGroup} from 'react-bootstrap'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import map from 'lodash/map'
 
+import { checkTranslation } from '../actions/index'
 
 class Result extends Component {
 
@@ -10,33 +11,54 @@ class Result extends Component {
         super(props)
     }
 
+    componentWillMount() {
+        this.props.checkTranslation()
+    }
+
     render() {
-        if (!this.props.results) {
-            return <div>Select a checkbox to get started.</div>;
-        }
         return (
            <div className="panel panel-default">
-               <div className="panel-heading">Result!</div>
+               <div className="panel-heading">{this.props.result.title}</div>
                <div className="panel-body">
-                   <div>Selected:
-                       {map(this.props.results, result => {
-                       return (` ${result.label} |  `
-                       )
-                   })}
-                   </div>
+                   {this.getSelectedResult(this.props.result.selectedOptions)}
                </div>
            </div>
         )
     }
+
+    getSelectedResult(options) {
+        return map(options, option => {
+            return(
+                <div key={`selected-result-${option.id}`} className="options">
+                    <h6  className="title">{option.title}</h6>
+                    {this.getSelected(option.selected)}
+                </div>
+
+            )
+        })
+    }
+
+    getSelected(options) {
+        return map(options, option => {
+            return(
+                <div key={`selected-${option.id}`}  className={option.value} >
+                    <span>{option.label} : {option.value}</span>
+                </div>
+            )
+        })
+    }
+
 }
 
-/// for(var i =0; i < this.props.result.length, i++) {
-//   console.log(this.props.result[i])
-//        "country's: " + result.label
-// }
+
 // result from reducer/index
 function mapStateToProps(appState){
-    return {results: appState.result}
+    return {result: appState.result}
 }
 
-export default connect(mapStateToProps)(Result)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ checkTranslation }, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Result)

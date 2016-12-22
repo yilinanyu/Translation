@@ -16,6 +16,18 @@ var initialReduxState = {
             { id:5, label:"QA", value:"qa", selected: false },
         ]
     },
+    marketingPages:{
+        title: "Marketing Pages",
+        checkboxes:[
+            { id:1, label:"Home", value:"home", selected: true },
+            { id:2, label:"Model S", value:"models", selected: true },
+            { id:3, label:"Model X", value:"modelx", selected: true},
+            { id:4, label:"Model 3", value:"model3", selected: true},
+            { id:5, label:"Energy", value:"energy", selected: true},
+            { id:6, label:"Supercharger", value:"supercharger", selected: true},
+            { id:7, label:"Career", value:"career", selected: true}
+        ]
+    },
     locales:{
         title: "Locales",
         checkboxes:[
@@ -28,17 +40,12 @@ var initialReduxState = {
             { id:7, label:"Hong Kong", value:"zh_HK", selected: false}
             ]
     },
-    marketingpages:{
-        title: "Marketingpages",
-        checkboxes:[
-            { id:1, label:"Home", value:"home", selected: true },
-            { id:2, label:"Model S", value:"models", selected: true },
-            { id:3, label:"Model X", value:"modelx", selected: false},
-            { id:4, label:"Model 3", value:"model3", selected: false},
-            { id:5, label:"Energy", value:"energy", selected: false},
-            { id:6, label:"Supercharger", value:"supercharger", selected: false},
-            { id:7, label:"Career", value:"career", selected: false}
-        ]
+    result: {
+        title: "Result",
+        selectedOptions: [
+            { id: 1, title: "Environment", selected: [] },
+            { id: 2, title: "Marketing Pages", selected: [] },
+            { id: 3, title: "Locales", selected: [] },
+        ],
     }
-
 }

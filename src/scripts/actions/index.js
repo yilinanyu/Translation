@@ -48,15 +48,20 @@ export function checkTranslation() {
     return (dispatch, getState) => {
 
         const appState = getState()
-        const env = appState.environment.radios
+        const environment = appState.environment.radios
+        const marketingPages = appState.marketingPages.checkboxes
         const locales = appState.locales.checkboxes
-        const marketingpages = appState.marketingpages.checkboxes
+        let result = appState.result
+
+        let selectedEnvironment = filter(environment, e => { return e.selected == 1})
+        let selectedMarketingPages = filter(marketingPages, m => { return m.selected == 1})
         let selectedLocale = filter(locales, o => { return o.selected == 1 })
-        let selectedPage = filter(marketingpages, m => { return m.selected == 1})
-        let selectedEnv = filter(env, e => { return e.selected == 1})
-        var selectedItem = unionBy(selectedEnv, selectedPage, selectedLocale, "label");
-        console.log(selectedItem)
-        dispatch(displayResult(selectedItem))
+
+        result.selectedOptions[0].selected  = selectedEnvironment
+        result.selectedOptions[1].selected  = selectedMarketingPages
+        result.selectedOptions[2].selected  = selectedLocale
+
+        dispatch(displayResult(result))
     }
 }
 

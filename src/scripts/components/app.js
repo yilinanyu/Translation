@@ -17,7 +17,7 @@ class App extends Component {
                     <Marketingpage/>
                     <Locales/>
                     <div className="main">
-                        <CheckButton/>
+                        <CheckButton />
                     </div>
                     <Result />
                 </div>

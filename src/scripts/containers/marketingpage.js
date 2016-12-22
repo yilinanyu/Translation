@@ -14,9 +14,9 @@ class Marketingpages extends Component {
     render() {
         return (
             <div className="panel panel-default">
-                <div className="panel-heading">{this.props.marketingpages.title}</div>
+                <div className="panel-heading">{this.props.marketingPages.title}</div>
                 <div className="panel-body">
-                    {this.getCheckboxes(this.props.marketingpages.checkboxes)}
+                    {this.getCheckboxes(this.props.marketingPages.checkboxes)}
                 </div>
             </div>
         )
@@ -38,7 +38,7 @@ class Marketingpages extends Component {
 }
 
 function mapStateToProps(appState){
-    return {marketingpages: appState.marketingpages}
+    return {marketingPages: appState.marketingPages}
 }
 
 function mapDispatchToProps(dispatch) {

@@ -5833,3 +5833,8 @@ button.close {
 
 .header {
   text-align: center; }
+
+.options {
+  margin-bottom: 5px;
+  padding: 20px;
+  background: #efefef; }

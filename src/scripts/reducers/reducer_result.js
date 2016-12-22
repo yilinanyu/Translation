@@ -9,7 +9,6 @@ export default function(state=[], action) {
         // if the action type is SET_RESULT, we will return the action payload, which is the selected item.
         case SET_RESULT:
             return Object.assign({}, action.payload)
-
     }
     // action state is anything else, just return state.
     return state;

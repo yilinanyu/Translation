@@ -18,7 +18,12 @@ class CheckButton extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.props.checkTranslation} Style="primary">Check</button>
+                <button
+                    type="button"
+                    className="btn btn-primary"
+                    onClick={this.props.checkTranslation}>
+                    Check
+                </button>
             </div>
         )
     }
