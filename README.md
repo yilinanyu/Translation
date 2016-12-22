@@ -1,14 +1,23 @@
-# React, Redux for Heroku
-    A simple boilerplate for app for Heroku using React and Redux. There are few ways to deploy application to Heroku. This application bundles the application instead letting Heorku bundle it for us. 
-    There are two advantages of doing it this way a) we can seperate "dependencies" vs "devDependencies". Heorku doesn't install node modules that in "devDependencies". b) The builds are done very fast and we don't need to worry about post push process.
+##### Translation Checker
+    Application that checks if a page content has been translated to a different language or not. 
+    If sentences aren't translated is displays list of the work that locale. 
+    The app is fully functional in localhost.
     
-    
-# Dev Build
-    $ gulp 
-    The deffult gulp task is dev mode. It has debug and runs gulp-connect. If you update the port on connect task please update the port on the sever.js as well.
-    
-# Prod Build
-    $ gulp prod
-    The prod task created a minfied version of the js and css. Please run the $ gulp before running the $ gulp prod
 
+##### How do I run this app?
+    We need run two servers for this app to work. 
+         - $ npm start 
+            (starts Node(Express) server for the API)
+        - $ gulp 
+            Gulp server for serving website in localhost 
 
+#### API
+    The API takes an URL and returns the content, only text, of the provided URL.
+    When call the API, the url key/value must be passed.
+        - /api/?url=www.website.com
+        
+##### Is the API working?
+    To test the API, run the commands in "How do I run this app" section.
+    Once that is done. Go to local host with port number that's defined in server.js and pass required params
+        
+        http://localhost:8055/api?url=http://www.tesla.com/powerwall

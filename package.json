@@ -1,8 +1,9 @@
 {
-  "name": "react-redux-heroku",
-  "version": "1.0.0",
-  "description": "A simple node application using React, Redux for Heroku",
-  "author": "Rexon M. Shrstha",
+  "name": "translation-checker",
+  "version": "0.0.01",
+  "description": "A React application that checks if a webpages are translated",
+  "author": "Lina Yi",
+  "contributors" : ["Rexon Shrestha"],
   "engines": {
     "node": "5.9.1"
   },
@@ -11,6 +12,7 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "cheerio": "^0.22.0",
     "ejs": "2.4.1",
     "express": "4.13.3",
     "lodash": "^4.17.2",
@@ -18,19 +20,14 @@
     "react-bootstrap": "^0.30.7",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
-    "redux": "^3.6.0"
+    "redux": "^3.6.0",
+    "request": "^2.79.0"
   },
   "repository": {
     "type": "git",
-    "url": "*"
+    "url": "https://github.com/yilinanyu/Translation.git "
   },
-  "keywords": [
-    "node",
-    "heroku",
-    "express",
-    "react",
-    "redux"
-  ],
+  "keywords": [],
   "license": "MIT",
   "devDependencies": {
     "babel": "^6.5.2",

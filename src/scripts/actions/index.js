@@ -1,12 +1,10 @@
-import find from 'lodash/find'
 import filter from 'lodash/filter'
-import unionBy from 'lodash/unionBy'
 
 export const UPDATE_COUNT = 'UPDATE_COUNT'
 export const SET_LOCALE = 'SET_LOCALE'
 export const SET_ENVIRONMENT = 'SET_ENVIRONMENT'
 export const SET_RESULT = 'SET_RESULT'
-export const SET_MARKETINGPAGES = 'SET_MARKETINGPAGES'
+export const SET_MARKETING_PAGES = 'SET_MARKETING_PAGES'
 
 export function updateCounter(operator) {
     return (dispatch, getState) => {
@@ -38,7 +36,7 @@ export function setLocales(checkboxId) {
 
 export function setMarketingpages(checkboxId) {
     return({
-        type:SET_MARKETINGPAGES,
+        type:SET_MARKETING_PAGES,
         payload: checkboxId
     })
 }

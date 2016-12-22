@@ -34,6 +34,9 @@ gulp.task('watch', ['build-dev','styles', 'connect'], function () {
     gulp.watch(scriptSource, ['build-dev']);
     gulp.watch(styleSource, ['styles']);
     displayMessage('WatchingFiles');
+    displayMessage(`################################################################################################
+    Did you run $ npm start? The express server must be running for API to work
+     `);
 });
 
 // Creates bundle for development. Has all the debugs turned on
@@ -139,5 +142,5 @@ function displayMessage(message, lb){
     if (lb){
         return gutil.log(chalk.blue('\n ****************** \n ' + message + '\n ****************** \n'));
     }
-    return gutil.log(chalk.blue('*** ' + message + ' ***'));
+    return gutil.log(chalk.blue(message));
 }
