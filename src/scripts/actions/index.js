@@ -60,13 +60,11 @@ export function checkTranslation(ajaxcall = 0) {
         result.selectedOptions[1].selected  = selectedMarketingPages
         result.selectedOptions[2].selected  = selectedLocale
 
-        if (ajaxcall==1) {
-            dispatch(fetchApiResult('url'))
-        }
-
-
+        // if (ajaxcall==1) {
+        //     dispatch(fetchApiResult('url'))
+        // }
+        dispatch(fetchApiResult('https://appsheettest1.azurewebsites.net/sample/posts'))
         // dispatch(displayResult(result))
-
     }
 }
 
@@ -79,6 +77,7 @@ export function displayResult(obj) {
 
 export function fetchApiResult(url){
     let promise = axios.get(url)
+    console.log(promise)
     return({
         type: FETCH_API_RESULT,
         payload: promise

@@ -1,7 +1,3 @@
-/**
- * Created by lyi on 12/6/2016.
- */
-
 import { SET_ENVIRONMENT } from '../actions/index'
 import map from 'lodash/map'
 export default function(state=[], action) {
@@ -17,9 +13,7 @@ export default function(state=[], action) {
             })
 
             return Object.assign({}, state)
-
     }
-
 
     return state;
 }

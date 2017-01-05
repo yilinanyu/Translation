@@ -1,6 +1,3 @@
-/**
- * Created by lyi on 12/5/2016.
- */
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import {Btton, ButtonToolbar, Panel, Checkbox, Radio, FormGroup} from 'react-bootstrap'

@@ -47,13 +47,13 @@ var initialReduxState = {
             { id: 2, title: "Marketing Pages", selected: [] },
             { id: 3, title: "Locales", selected: [] },
         ],
-    }
-    // result: {
-    //     title: "Result",
+    },
+    api: {
+        title: "APIResult",
     //     selectedOptions: [
     //         { id: 1, title: "Environment", selected: [] },
     //         { id: 2, title: "Marketing Pages", selected: [] },
     //         { id: 3, title: "Locales", selected: [] },
     //     ],
-    // }
+    }
 }

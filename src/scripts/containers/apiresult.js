@@ -11,19 +11,18 @@ class APIResult extends Component {
         super(props)
     }
 
-    // componentWillMount() {
-    //     this.props.checkTranslation()
-    // }
+    componentWillMount() {
+        this.props.checkTranslation()
+    }
 
     render() {
         return (
-            <div> hssdasdas</div>
-           // <div className="panel panel-default">
-           //     <div className="panel-heading">{this.props.result.title}</div>
-           //     <div className="panel-body">
-           //         {this.getSelectedResult(this.props.result.selectedOptions)}
-           //     </div>
-           // </div>
+            <div className="panel panel-default">
+                <div className="panel-heading">{this.props.api.title}</div>
+                <div className="panel-body">
+                    {/*{this.getSelectedResult(this.props.result.selectedOptions)}*/}
+                </div>
+            </div>
         )
     }
 
@@ -53,11 +52,11 @@ class APIResult extends Component {
 
 // result from reducer/index
 function mapStateToProps(appState){
-    return {APIResult: appState.APIResult}
+    return {api: appState.api}
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({ fetchAPIResult }, dispatch)
+    return bindActionCreators({ checkTranslation: fetchAPIResult }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(APIResult)
