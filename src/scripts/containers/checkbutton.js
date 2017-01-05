@@ -15,7 +15,7 @@ class CheckButton extends Component {
                 <button
                     type="button"
                     className="btn btn-primary"
-                    onClick={this.props.checkTranslation()}>
+                    onClick={this.props.checkTranslation}>
                     Check
                 </button>
             </div>
