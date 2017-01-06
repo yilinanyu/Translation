@@ -57,11 +57,11 @@ export function checkTranslation(ajaxcall = false) {
                 const url = `https://${selectedEnvironment[0].value}.tesla.com/${locale}/${marketingpage}?redirect=no`
                 if (ajaxcall) {
                     fetchApiResult(`http://localhost:8055/api?url=${url}`)
-                        .then((res => {
+                        .then(res => {
                             console.log(res)
                         }, err => {
                             console.log(err)
-                        }))
+                        })
                    // dispatch(fetchApiResult(`http://localhost:8055/api?url=${url}`))
                        // .then(res){ 'do something' }
 
@@ -86,12 +86,9 @@ export function fetchApiResult(url) {
     return new Promise((resolve, reject) => {
         axios.get(url)
             .then(res => {
-                // console.log(res.data)
-                return resolve(res.data)
+                resolve(res.data)
             }, err => {
-                // console.warn(`Oops there is an error. ${err}`)
-                return reject(err)
-
+                reject(err)
             })
     })
 
