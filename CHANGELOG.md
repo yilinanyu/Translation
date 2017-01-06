@@ -5,16 +5,22 @@
 
 
 ### TODO
-    - Update the checkTranslation() method so that it calls API and console logs the content
-        - When the "Check" button is clicked
-            - It should makes an ajax call to /api
-            - Once the content is received from ajax, console the content
-    - To make the ajax call look into axios module (https://www.npmjs.com/package/axios)
+    - Grab the english version of each page so that we can compare it with non-english page
+    - Once the pages fetched, store them in variables
+    - Grab only the text content
+        - like html elements a, p, h1-h6, button ... and so on. Check page HTML code and see what tags are used
+        - look into 'cheerio' node module. You should be able to use it like jQuery
+        - using cheerio grab the text content
 
+        /powerwall
+            var powerwall = []
+            // once we receive the content from api. inject to powerwall array
+               // tesla.com/fr_CA/powerwall
+               powerwall.push({en_US: content})
+               powerwall.push({fr_CA: content})
 
-    - ## Notes
-        - Refactor the checkTranslation() method so that
-            - It makes the ajax call only when the check button is clicked
-            - It shouldn't make ajax call when page is loaded
-            - perhaps we can pass a param/boolean that handles this logic.
-    
+               // will result to
+               powerwall = [
+                    {en_US: content},
+                    {fr_CA: content}
+               ]

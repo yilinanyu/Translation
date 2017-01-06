@@ -56,7 +56,15 @@ export function checkTranslation(ajaxcall = false) {
                 //const url = 'https://' + selectedEnvironment[0].value + '.tesla.com/' + locale + '/' + marketingpage + '?redirect=no'
                 const url = `https://${selectedEnvironment[0].value}.tesla.com/${locale}/${marketingpage}?redirect=no`
                 if (ajaxcall) {
-                    dispatch(fetchApiResult(`http://localhost:8055/api?url=${url}`))
+                    fetchApiResult(`http://localhost:8055/api?url=${url}`)
+                        .then((res => {
+                            console.log(res)
+                        }, err => {
+                            console.log(err)
+                        }))
+                   // dispatch(fetchApiResult(`http://localhost:8055/api?url=${url}`))
+                       // .then(res){ 'do something' }
+
                 }
             })
         })
@@ -72,16 +80,25 @@ export function displayResult(obj) {
     })
 }
 
-export function fetchApiResult(url) {
 
-    return (disptach) => {
+// update this to a function that returns promise
+export function fetchApiResult(url) {
+    return new Promise((resolve, reject) => {
         axios.get(url)
             .then(res => {
-                console.log(res.data)
+                // console.log(res.data)
+                return resolve(res.data)
             }, err => {
-                console.warn(`Oops there is an error. ${err}`)
+                // console.warn(`Oops there is an error. ${err}`)
+                return reject(err)
+
             })
-    }
+    })
+
+
+    // return (disptach) => {
+    //
+    // }
 
     // let promise = axios.get(url)
     // console.log(promise)
@@ -89,4 +106,5 @@ export function fetchApiResult(url) {
     //     type: FETCH_API_RESULT,
     //     payload: promise
     // })
+    // promise vs callback
 }

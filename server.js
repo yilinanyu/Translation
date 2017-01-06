@@ -34,7 +34,7 @@ app.get('/api', (req, res) => {
                 res.send(body);
             } else {
                 console.log("We’ve encountered an error: " + error);
-                return (res.send({error: `Oops! was able to get data from this page. Error: ${error}`}))
+                return (res.send({error: `Oops! was unable to get data from url ${url}. Error: ${error}`}))
             }
         });
     }
