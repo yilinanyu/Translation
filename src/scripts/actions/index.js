@@ -45,17 +45,7 @@ export function checkTranslation(ajaxcall = false) {
         let selectedEnvironment = filter(environment, e => { return e.selected == 1})
         let selectedMarketingPages = filter(marketingPages, m => { return m.selected == 1})
         let selectedLocales = filter(locales, o => { return o.selected == 1 })
-        //
-        // result.selectedOptions[0].selected  = selectedEnvironment
-        // result.selectedOptions[1].selected  = selectedMarketingPages
-        // result.selectedOptions[2].selected  = selectedLocale
-        //
-        // console.log(selectedEnvironment)
-        // console.log(selectedMarketingPages)
-        // console.log(selectedLocales)
-        // selectedEnvironment.map(i => {
-        //    console.log(i.value)
-        //
+
         // })
         map(selectedLocales, selectedLocale => {
             // console.log(selectedLocale)
@@ -68,7 +58,6 @@ export function checkTranslation(ajaxcall = false) {
                 if (ajaxcall) {
                     dispatch(fetchApiResult(`http://localhost:8055/api?url=${url}`))
                 }
-                console.log(url)
             })
         })
 
@@ -77,7 +66,6 @@ export function checkTranslation(ajaxcall = false) {
 }
 
 export function displayResult(obj) {
-    console.log('displayResult')
     return({
         type: SET_RESULT,
         payload: obj
@@ -87,11 +75,9 @@ export function displayResult(obj) {
 export function fetchApiResult(url) {
 
     return (disptach) => {
-        console.log('fetchApiResult')
-        console.log(url)
         axios.get(url)
             .then(res => {
-                console.log(res)
+                console.log(res.data)
             }, err => {
                 console.warn(`Oops there is an error. ${err}`)
             })

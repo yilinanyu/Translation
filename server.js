@@ -9,6 +9,8 @@ let app = express();
 app.set('port', (process.env.PORT || 8055));
 
 app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+
     let now = new Date().toString();
     let log = `${now}: ${req.method} ${req.url}`;
     console.log(log);
@@ -28,6 +30,7 @@ app.get('/api', (req, res) => {
     else {
         request(url, function (error, response, body) {
             if (!error) {
+                console.log(body)
                 res.send(body);
             } else {
                 console.log("We’ve encountered an error: " + error);
