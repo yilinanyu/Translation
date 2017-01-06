@@ -9,8 +9,8 @@ var initialReduxState = {
     environment: {
         title: "Environment",
         radios:[
-            { id:1, label:"Stage", value:"stage", selected: false },
-            { id:2, label:"Prod", value:"prod", selected: true },
+            { id:1, label:"Stage", value:"stage", selected: true },
+            { id:2, label:"Prod", value:"prod", selected: false },
             { id:3, label:"Mirror", value:"mirror", selected: false },
             { id:4, label:"Stage3", value:"stage3", selected: false },
             { id:5, label:"QA", value:"qa", selected: false },

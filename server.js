@@ -17,6 +17,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/api', (req, res) => {
+    console.log(req.query.url)
     const url = req.query.url
     if(url == undefined) {
         res.send({

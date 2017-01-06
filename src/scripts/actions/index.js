@@ -1,5 +1,7 @@
 import filter from 'lodash/filter'
+import map from 'lodash/map'
 import axios from 'axios'
+
 export const SET_LOCALE = 'SET_LOCALE'
 export const SET_ENVIRONMENT = 'SET_ENVIRONMENT'
 export const SET_RESULT = 'SET_RESULT'
@@ -42,34 +44,34 @@ export function checkTranslation(ajaxcall = false) {
 
         let selectedEnvironment = filter(environment, e => { return e.selected == 1})
         let selectedMarketingPages = filter(marketingPages, m => { return m.selected == 1})
-        let selectedLocale = filter(locales, o => { return o.selected == 1 })
+        let selectedLocales = filter(locales, o => { return o.selected == 1 })
         //
         // result.selectedOptions[0].selected  = selectedEnvironment
         // result.selectedOptions[1].selected  = selectedMarketingPages
         // result.selectedOptions[2].selected  = selectedLocale
-
-        console.log(selectedEnvironment)
-        console.log(selectedMarketingPages)
-        console.log(selectedLocale)
+        //
+        // console.log(selectedEnvironment)
+        // console.log(selectedMarketingPages)
+        // console.log(selectedLocales)
         // selectedEnvironment.map(i => {
         //    console.log(i.value)
         //
         // })
+        map(selectedLocales, selectedLocale => {
+            // console.log(selectedLocale)
+            const locale = selectedLocale.value
+            map(selectedMarketingPages, selectedMarketingPage =>{
+                // console.log(selectedMarketingPage)
+                const marketingpage = selectedMarketingPage.value
+                //const url = 'https://' + selectedEnvironment[0].value + '.tesla.com/' + locale + '/' + marketingpage + '?redirect=no'
+                const url = `https://${selectedEnvironment[0].value}.tesla.com/${locale}/${marketingpage}?redirect=no`
+                if (ajaxcall) {
+                    dispatch(fetchApiResult(`http://localhost:8055/api?url=${url}`))
+                }
+                console.log(url)
+            })
+        })
 
-
-        console.log(`When check button is clicked it should log
-        https://www.tesla.com/fr_CA/supercharger?redirect=no
-        https://www.tesla.com/en_CA/supercharger?redirect=no
-        https://www.tesla.com/fr_CA/energy?redirect=no
-        https://www.tesla.com/en_CA/energy?redirect=no
-
-`
-
-            )
-
-        if (ajaxcall) {
-            //dispatch(fetchApiResult('http://localhost/api?url=http://www.google.com'))
-        }
         dispatch(displayResult(result))
     }
 }
@@ -83,7 +85,10 @@ export function displayResult(obj) {
 }
 
 export function fetchApiResult(url) {
+
     return (disptach) => {
+        console.log('fetchApiResult')
+        console.log(url)
         axios.get(url)
             .then(res => {
                 console.log(res)
