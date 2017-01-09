@@ -10,7 +10,7 @@ var initialReduxState = {
         title: "Environment",
         radios:[
             { id:1, label:"Stage", value:"stage", selected: true },
-            { id:2, label:"Prod", value:"prod", selected: false },
+            { id:2, label:"Prod", value:"www", selected: false },
             { id:3, label:"Mirror", value:"mirror", selected: false },
             { id:4, label:"Stage3", value:"stage3", selected: false },
             { id:5, label:"QA", value:"qa", selected: false },
@@ -19,12 +19,12 @@ var initialReduxState = {
     marketingPages:{
         title: "Marketing Pages",
         checkboxes:[
-            // { id:1, label:"Home", value:"home", selected: true },
+            { id:1, label:"Home", value:"", selected: true },
             { id:2, label:"Model S", value:"models", selected: false },
             { id:3, label:"Model X", value:"modelx", selected: false},
             { id:4, label:"Model 3", value:"model3", selected: false},
-            { id:5, label:"Energy", value:"energy", selected: true},
-            { id:6, label:"Supercharger", value:"supercharger", selected: true},
+            { id:5, label:"Energy", value:"energy", selected: false},
+            { id:6, label:"Supercharger", value:"supercharger", selected: false},
             { id:7, label:"Career", value:"career", selected: false}
         ]
     },
@@ -56,4 +56,5 @@ var initialReduxState = {
     //         { id: 3, title: "Locales", selected: [] },
     //     ],
     }
+
 }

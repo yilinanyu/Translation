@@ -1,7 +1,4 @@
 import { SET_RESULT } from '../actions/index'
-/**
- * Created by lyi on 12/6/2016.
- */
 // state argument is not application state, only the state this render is responsible for
 export default function(state=[], action) {
     // do care about the actions

@@ -46,29 +46,29 @@ export function checkTranslation(ajaxcall = false) {
         let selectedMarketingPages = filter(marketingPages, m => { return m.selected == 1})
         let selectedLocales = filter(locales, o => { return o.selected == 1 })
 
-        // })
         map(selectedLocales, selectedLocale => {
-            // console.log(selectedLocale)
             const locale = selectedLocale.value
             map(selectedMarketingPages, selectedMarketingPage =>{
-                // console.log(selectedMarketingPage)
                 const marketingpage = selectedMarketingPage.value
-                //const url = 'https://' + selectedEnvironment[0].value + '.tesla.com/' + locale + '/' + marketingpage + '?redirect=no'
                 const url = `https://${selectedEnvironment[0].value}.tesla.com/${locale}/${marketingpage}?redirect=no`
+                console.log(url)
                 if (ajaxcall) {
                     fetchApiResult(`http://localhost:8055/api?url=${url}`)
                         .then(res => {
-                            console.log(res)
+                            var content = res
+                            console.log(content)
+                            var cheerio = require('cheerio'),
+                                $ = cheerio.load(content);
+                            var selectedtext = $('h1').map(function(i, el) {
+                                return $(this).text();
+                            }).get().join(', ');
+                            console.log(selectedtext)
                         }, err => {
                             console.log(err)
                         })
-                   // dispatch(fetchApiResult(`http://localhost:8055/api?url=${url}`))
-                       // .then(res){ 'do something' }
-
                 }
             })
         })
-
         dispatch(displayResult(result))
     }
 }
@@ -80,8 +80,6 @@ export function displayResult(obj) {
     })
 }
 
-
-// update this to a function that returns promise
 export function fetchApiResult(url) {
     return new Promise((resolve, reject) => {
         axios.get(url)
@@ -91,17 +89,4 @@ export function fetchApiResult(url) {
                 reject(err)
             })
     })
-
-
-    // return (disptach) => {
-    //
-    // }
-
-    // let promise = axios.get(url)
-    // console.log(promise)
-    // return({
-    //     type: FETCH_API_RESULT,
-    //     payload: promise
-    // })
-    // promise vs callback
 }

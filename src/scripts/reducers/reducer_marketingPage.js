@@ -1,9 +1,6 @@
 import { SET_MARKETING_PAGES } from '../actions/index'
 import map from 'lodash/map'
 
-/**
- * Created by lyi on 12/6/2016.
- */
 export default function(state=[], action) {
 
     switch(action.type) {
@@ -20,5 +17,3 @@ export default function(state=[], action) {
     }
     return state;
 }
-/** make all unselected
- whatever id passed, select that one.**/
