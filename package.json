@@ -21,7 +21,10 @@
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "redux": "^3.6.0",
-    "request": "^2.79.0"
+    "request": "^2.79.0",
+    "axios":"0.15.3",
+    "redux-thunk": "^2.1.0",
+    "cheerio":"^0.22.0"
   },
   "repository": {
     "type": "git",
@@ -47,12 +50,9 @@
     "gulp-uglifycss": "^1.0.6",
     "gulp-util": "^3.0.7",
     "gutil": "^1.6.4",
-    "redux-thunk": "^2.1.0",
     "uglify": "^0.1.5",
     "uglifycss": "0.0.21",
     "vinyl-source-stream": "^1.1.0",
-    "watchify": "^3.7.0",
-    "axios":"0.15.3",
-    "cheerio":"^0.22.0"
+    "watchify": "^3.7.0"
   }
 }
