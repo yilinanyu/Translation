@@ -1,6 +1,7 @@
 import filter from 'lodash/filter'
 import map from 'lodash/map'
 import axios from 'axios'
+import cheerio from 'cheerio'
 
 
 
@@ -21,12 +22,13 @@ export function processTranslations(state, ajaxcall) {
 
         let counter = 0
         const max = selectedLocales.length * selectedMarketingPages.length
-        console.log(selectedLocales)
 
 
     let translations = {
             models : [],
-            modelx : []
+            modelx : [],
+            home:[]
+
         }
 
         map(selectedLocales, selectedLocale => {
@@ -42,10 +44,13 @@ export function processTranslations(state, ajaxcall) {
 
                             switch(res.page) {
                                 case 'models':
-                                    translations.models.push({locale: res.locale, data: res.data})
+                                    translations.models.push({locale: res.locale, rawStrings: res.data})
                                     break
                                 case 'modelx':
-                                    translations.modelx.push({locale: res.locale, data: res.data})
+                                    translations.modelx.push({locale: res.locale, rawStrings: res.data})
+                                    break
+                                case '':
+                                    translations.home.push({locale: res.locale, rawStrings: res.data})
                                     break
                                 default:
                                     console.warn(`page ${res.page} not found!!!`)
@@ -53,17 +58,21 @@ export function processTranslations(state, ajaxcall) {
                             // var content = res
                             // console.log(content)
                             // var cheerio = require('cheerio'),
-                            //     $ = cheerio.load(content);
-                            // var selectedtext = $('h1').map(function(i, el) {
-                            //     return $(this).text();
-                            // }).get().join(', ');
-                            // console.log(selectedtext)
+                            //     $ = cheerio.load(res.data);
+                            //
+                            // map(CONST.elements, element =>{
+                            //     var selectedtext = $(element).map(function(i, el) {
+                            //         return $(this).text();
+                            //     }).get().join(', ');
+                            //     console.log(selectedtext)
+                            // })
+                            // fetchText(res.data)
+
                             counter++
 
                             if (counter == max) {
-                                console.log('All the pages are fetched!!!')
-                                console.log('now process the arrays ')
-                                console.log(translations)
+                                processElements(translations)
+
                             }
                         }, err => {
                             console.log(err)
@@ -72,6 +81,13 @@ export function processTranslations(state, ajaxcall) {
             })
         })
      })
+}
+
+
+function processElements(translations){
+    console.log(translations)
+    fetchText(translations)
+    console.log('now go through the raw HTML strings and categories them')
 }
 
 export function fetchApiResult(url, page, locale) {
@@ -83,4 +99,52 @@ export function fetchApiResult(url, page, locale) {
                 reject(err)
             })
     })
+}
+
+export function fetchText(data) {
+    let toReturn = {}
+    let $ = cheerio.load(data);
+    console.log(data)
+
+    map(data, (value, key) => {
+
+        let page = key
+        let pageDetails = value
+
+        map(pageDetails, pageDetail => {
+            let locale = pageDetail.locale
+            let rawStrings = pageDetail.rawStrings
+            map(CONST.classnames , classname => {
+                let classNotes = cheerio(classname, rawStrings)
+                console.log($('.section-title--dek', '.classname').text())
+                map(CONST.elements, element => {
+                let elementNodes = cheerio(element, classNotes)
+
+                map(elementNodes, elementNode => {
+                    let child = elementNode.children
+                    // console.log(child)
+                })
+
+
+
+                // $('ul', '<ul id="fruits">...</ul>');
+                //
+                // console.log(element)
+            })
+
+        })
+
+    })
+
+    })
+
+    // map(CONST.elements, element =>{
+    //
+    //     // console.log(element)
+    //     // var selectedtext = $(element).map((i, el) => {
+    //     //
+    //     //     return $(this).text();
+    //     // }).get().join(', ');
+    //     // console.log(selectedtext)
+    // })
 }
