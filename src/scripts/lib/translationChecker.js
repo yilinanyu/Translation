@@ -2,9 +2,6 @@ import filter from 'lodash/filter'
 import map from 'lodash/map'
 import axios from 'axios'
 import cheerio from 'cheerio'
-
-
-
 import CONST from '../constant'
 
 export function processTranslations(state, ajaxcall) {
@@ -14,34 +11,29 @@ export function processTranslations(state, ajaxcall) {
         const marketingPages = state.marketingPages.checkboxes
         const locales = state.locales.checkboxes
         let result = state.result
-
         let selectedEnvironment = filter(environment, e => { return e.selected == 1})
         let selectedMarketingPages = filter(marketingPages, m => { return m.selected == 1})
         let selectedLocales = filter(locales, o => { return o.selected == 1 })
         selectedLocales.push({value:''})
-
         let counter = 0
         const max = selectedLocales.length * selectedMarketingPages.length
-
-
-    let translations = {
+        let translations = {
+            home:[],
             models : [],
             modelx : [],
-            home:[]
-
+            model3 : [],
+            energy : [],
+            supercharger: [],
+            career: []
         }
-
         map(selectedLocales, selectedLocale => {
             const locale = selectedLocale.value
             map(selectedMarketingPages, selectedMarketingPage =>{
                 const marketingPage = selectedMarketingPage.value
                 const url = `https://${selectedEnvironment[0].value}.${CONST.domain}/${locale}/${marketingPage}?redirect=no`
-
-
                 if (ajaxcall) {
                     fetchApiResult(`${CONST.server}?url=${url}`, marketingPage, locale )
                         .then(res => {
-
                             switch(res.page) {
                                 case 'models':
                                     translations.models.push({locale: res.locale, rawStrings: res.data})
@@ -55,24 +47,9 @@ export function processTranslations(state, ajaxcall) {
                                 default:
                                     console.warn(`page ${res.page} not found!!!`)
                             }
-                            // var content = res
-                            // console.log(content)
-                            // var cheerio = require('cheerio'),
-                            //     $ = cheerio.load(res.data);
-                            //
-                            // map(CONST.elements, element =>{
-                            //     var selectedtext = $(element).map(function(i, el) {
-                            //         return $(this).text();
-                            //     }).get().join(', ');
-                            //     console.log(selectedtext)
-                            // })
-                            // fetchText(res.data)
-
                             counter++
-
                             if (counter == max) {
                                 processElements(translations)
-
                             }
                         }, err => {
                             console.log(err)
@@ -83,9 +60,7 @@ export function processTranslations(state, ajaxcall) {
      })
 }
 
-
 function processElements(translations){
-    console.log(translations)
     fetchText(translations)
     console.log('now go through the raw HTML strings and categories them')
 }
@@ -103,48 +78,45 @@ export function fetchApiResult(url, page, locale) {
 
 export function fetchText(data) {
     let toReturn = {}
-    let $ = cheerio.load(data);
+    console.log('All pages')
     console.log(data)
-
     map(data, (value, key) => {
-
         let page = key
         let pageDetails = value
+        if ( pageDetails !== null || pageDetails.length > 0 ) {
 
-        map(pageDetails, pageDetail => {
-            let locale = pageDetail.locale
-            let rawStrings = pageDetail.rawStrings
-            map(CONST.classnames , classname => {
-                let classNotes = cheerio(classname, rawStrings)
-                console.log($('.section-title--dek', '.classname').text())
-                map(CONST.elements, element => {
-                let elementNodes = cheerio(element, classNotes)
+            map(pageDetails, pageDetail => {
 
-                map(elementNodes, elementNode => {
-                    let child = elementNode.children
-                    // console.log(child)
+                    let locale = pageDetail.locale
+                    let rawStrings = pageDetail.rawStrings
+                    let $ = cheerio.load(rawStrings)
+
+                    let mainNavText = $('.nav-block','#main-nav').text()
+                    let subNavText = $('.nav-block', '#sub-nav').text()
+
+                console.log("******** Locale **********")
+                console.log(locale)
+                console.log("******** mainNavText **********")
+                console.log(mainNavText)
+                console.log("******** subNavText **********")
+                console.log(subNavText)
+                //console.log(content)
+                    // map(CONST.classnames, classname => {
+                    //     let classNotes = cheerio(classname, rawStrings)
+                    //     // console.log(classNotes)
+                    //     map(CONST.elements, element => {
+                    //         let elementNodes = cheerio(element, classNotes)
+                    //         console.log(elementNodes)
+                    //         map(elementNodes, elementNode => {
+                    //             console.log(elementNode)
+                    //             let child = elementNode.children
+                    //             console.log(child)
+                    //         })
+                    //     })
+                    // })
                 })
-
-
-
-                // $('ul', '<ul id="fruits">...</ul>');
-                //
-                // console.log(element)
-            })
-
-        })
+        }
 
     })
 
-    })
-
-    // map(CONST.elements, element =>{
-    //
-    //     // console.log(element)
-    //     // var selectedtext = $(element).map((i, el) => {
-    //     //
-    //     //     return $(this).text();
-    //     // }).get().join(', ');
-    //     // console.log(selectedtext)
-    // })
 }

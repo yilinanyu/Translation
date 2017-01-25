@@ -21,7 +21,7 @@ var initialReduxState = {
         checkboxes:[
             { id:1, label:"Home", value:"", selected: false },
             { id:2, label:"Model S", value:"models", selected: true },
-            { id:3, label:"Model X", value:"modelx", selected: true},
+            { id:3, label:"Model X", value:"modelx", selected: false},
             { id:4, label:"Model 3", value:"model3", selected: false},
             { id:5, label:"Energy", value:"energy", selected: false},
             { id:6, label:"Supercharger", value:"supercharger", selected: false},
@@ -33,9 +33,9 @@ var initialReduxState = {
         checkboxes:[
             // { id:1, label:"US", value:"en_US", selected: true },
             { id:2, label:"Canada", value:"en_CA", selected: true },
-            { id:3, label:"Canada French", value:"fr_CA", selected: true},
-            { id:4, label:"Mexico", value:"es_MX", selected: true},
-            { id:5, label:"Belgium", value:"nl_BE", selected: true},
+            { id:3, label:"Canada French", value:"fr_CA", selected: false},
+            { id:4, label:"Mexico", value:"es_MX", selected: false},
+            { id:5, label:"Belgium", value:"nl_BE", selected: false},
             { id:6, label:"France", value:"fr_FR", selected: false},
             { id:7, label:"Hong Kong", value:"zh_HK", selected: false}
             ]
