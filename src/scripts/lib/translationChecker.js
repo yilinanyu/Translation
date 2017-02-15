@@ -61,6 +61,8 @@ export function processTranslations(state, ajaxcall) {
 }
 
 function processElements(translations){
+    console.log("******** translations **********")
+    console.log(translations)
     fetchText(translations)
     console.log('now go through the raw HTML strings and categories them')
 }
@@ -95,25 +97,18 @@ export function fetchText(data) {
                     let subNavText = $('.nav-block', '#sub-nav').text()
 
                 console.log("******** Locale **********")
-                console.log(locale)
+                if (locale == '') {
+                    console.log('en_US')
+                }
+                else{
+                    console.log(locale)
+                }
                 console.log("******** mainNavText **********")
                 console.log(mainNavText)
                 console.log("******** subNavText **********")
                 console.log(subNavText)
-                //console.log(content)
-                    // map(CONST.classnames, classname => {
-                    //     let classNotes = cheerio(classname, rawStrings)
-                    //     // console.log(classNotes)
-                    //     map(CONST.elements, element => {
-                    //         let elementNodes = cheerio(element, classNotes)
-                    //         console.log(elementNodes)
-                    //         map(elementNodes, elementNode => {
-                    //             console.log(elementNode)
-                    //             let child = elementNode.children
-                    //             console.log(child)
-                    //         })
-                    //     })
-                    // })
+
+
                 })
         }
 
